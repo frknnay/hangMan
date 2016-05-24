@@ -1,13 +1,15 @@
 import os
 from random import randint
 
+
 words = []
 mistakes = 0
-word = '' #random word from words list
-tip = ''  #tip for selected word
+word = ''   #random word from words list
+tip = ''    #tip for selected word
 puzzle = []
 guessed_letters = []
 hangman_pics = []
+error = ''
 
 def get_hangman_pics():
     global hangman_pics
@@ -41,22 +43,28 @@ def print_game_status():
     print(hangman_pics[mistakes])
     print('Tip : ' + tip)
     print(''.join(puzzle))
-
+    if len(error) > 0:
+        print(error)
 
 def guess_letter(letter):
+    global error
+
     if letter in word.lower() and letter not in guessed_letters:
+        error = ''
         guessed_letters.append(letter)
         for i in range(len(word)):
             if letter == word.lower()[i]:
                 puzzle[i] = letter[0]
+
     elif letter in guessed_letters:
-        print("You've already guessed that letter!")
+        error = "You've already guessed that letter!"
+
+
     else:
-        print("That letter does not exit in puzzle!")
+        error = "That letter does not exit in puzzle!"
         guessed_letters.append(letter)
         global mistakes
         mistakes += 1
-
 
 def start_game():
     get_hangman_pics()
@@ -64,8 +72,8 @@ def start_game():
     get_random_word()
     create_puzzle(word)
     while '_' in puzzle:
-        guess_letter(input("Guess a letter\n"))
         print_game_status()
-        
+        guess_letter(input("Guess a letter: "))
+
 
 start_game()
