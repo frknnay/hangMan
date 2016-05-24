@@ -40,11 +40,13 @@ def create_puzzle(word):
 
 def print_game_status():
     os.system('clear')
+    print("Guessed letters: " + ",".join(guessed_letters))
     print(hangman_pics[mistakes])
     print('Tip : ' + tip)
     print(''.join(puzzle))
+
     if len(error) > 0:
-        print(error)
+        print("\n" + error)
 
 def guess_letter(letter):
     global error
@@ -65,6 +67,10 @@ def guess_letter(letter):
         guessed_letters.append(letter)
         global mistakes
         mistakes += 1
+
+    if mistakes == 6:
+        print("You've run out of guesses!")
+        exit()
 
 def start_game():
     get_hangman_pics()
