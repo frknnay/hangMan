@@ -9,7 +9,8 @@ Hangman game with python.
 python3 main.py
 </pre>
 
-####Try to guess the word with one letter at a time.
+Try to guess the word with one letter at a time.
+
 
 ####If you think you found the word, just type it like;
 
