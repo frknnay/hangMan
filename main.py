@@ -11,6 +11,9 @@ guessed_letters = []
 hangman_pics = []
 error = ''
 
+def clean_terminal():
+    os.system('cls' if os.name=='nt' else 'clear')
+
 def get_hangman_pics():
     global hangman_pics
     with open('pics.txt','r') as pics:
@@ -40,7 +43,7 @@ def create_puzzle(word):
             puzzle.append('_')
 
 def print_game_status():
-    os.system('clear')
+    clean_terminal()
     print("Guessed letters: " + ",".join(guessed_letters))
     print(hangman_pics[mistakes])
     print('Tip : ' + tip)
@@ -94,7 +97,7 @@ def start_game():
         print_game_status()
         check_mistakes()
         guess_letter(input("Guess a letter: ").lower())
-    os.system('clear')
+    clean_terminal()
     print("Congrats, you beat the game!")
 
 start_game()
