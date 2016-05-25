@@ -55,7 +55,7 @@ def guess_letter(letter):
         if isinstance(letter, str) and len(letter) == 1:
             break
         else:
-            letter = input("\nYou should enter a letter!\n")
+            letter = input("\nYou should enter a letter!\n").lower()
 
     if letter in word.lower() and letter not in guessed_letters:
         error = ''
@@ -74,8 +74,10 @@ def guess_letter(letter):
         global mistakes
         mistakes += 1
 
+def check_mistakes():
     if mistakes == 6:
-        print("You've run out of guesses!")
+        print("\nYou've run out of guesses!")
+        print("The word was '" + word + "'")
         exit()
 
 def start_game():
@@ -85,7 +87,9 @@ def start_game():
     create_puzzle(word)
     while '_' in puzzle:
         print_game_status()
-        guess_letter(input("Guess a letter: "))
-
+        check_mistakes()
+        guess_letter(input("Guess a letter: ").lower())
+    os.system('clear')
+    print("Congrats, you beat the game!")
 
 start_game()
