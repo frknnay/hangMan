@@ -22,7 +22,8 @@ def create_word_list():
     global words
     with open('words.txt', 'r') as word_list:
         for line in word_list:
-            words.append(line.rstrip().split(' - '))
+            if not line.startswith('#'):
+                words.append(line.rstrip().split(' - '))
 
 def get_random_word():
     rnd = randint(0,len(words) - 1)
@@ -49,7 +50,11 @@ def print_game_status():
         print("\n" + error)
 
 def guess_letter(letter):
-    global error
+    global error, puzzle
+
+    if letter == word.lower():
+        puzzle = word
+        return
 
     while True:
         if isinstance(letter, str) and len(letter) == 1:

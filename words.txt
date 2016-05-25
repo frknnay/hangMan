@@ -1,3 +1,6 @@
+#Tip - Word
 Animal - Elephant
 Singer - Michael Jackson
 Singer - Bruce Dickinson
+Animal - Bird
+Animal - Dog
