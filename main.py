@@ -55,15 +55,15 @@ def print_game_status():
 def guess_letter(letter):
     global error, puzzle
 
-    if letter == word.lower():
-        puzzle = word
-        return
-
     while True:
         if isinstance(letter, str) and len(letter) == 1:
             break
         else:
             letter = input("\nYou should enter a letter!\n").lower()
+            
+        if letter == word.lower():
+            puzzle = word
+            return
 
     if letter in word.lower() and letter not in guessed_letters:
         error = ''
